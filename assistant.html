@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPath Pro — AI Assistant</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">📊</div><div class="logo-text">DataPath <span>Pro</span></div></div>
+    <div class="sidebar-user"><div class="user-avatar">AS</div><div class="user-info"><div class="user-name">Alex Student</div><div class="user-level">Analyst • 6,240 XP</div></div></div>
+    <div class="sidebar-xp"><div class="xp-label"><span class="xp-current">6,240 XP</span><span>→ Expert</span></div><div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:25%"></div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="roadmap.html" class="nav-item"><i class="fas fa-map"></i> Learning Roadmap</a>
+      <a href="courses.html" class="nav-item"><i class="fas fa-book-open"></i> Courses</a>
+      <a href="progress.html" class="nav-item"><i class="fas fa-chart-line"></i> My Progress</a>
+      <div class="nav-section-label">Workspace</div>
+      <a href="projects.html" class="nav-item"><i class="fas fa-folder-open"></i> Portfolio</a>
+      <a href="notes.html" class="nav-item"><i class="fas fa-sticky-note"></i> Notes</a>
+      <a href="interview.html" class="nav-item"><i class="fas fa-briefcase"></i> Interview Prep</a>
+      <a href="assistant.html" class="nav-item active"><i class="fas fa-robot"></i> AI Assistant <span class="nav-badge" style="background:var(--accent-teal)">AI</span></a>
+    </nav>
+    <div class="sidebar-streak"><div class="streak-icon">🔥</div><div class="streak-info"><div class="streak-count">12</div><div class="streak-label">day streak</div></div></div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#00d4aa,#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:18px">🤖</div>
+        <div>
+          <div style="font-size:15px;font-weight:700">DataMentor</div>
+          <div style="font-size:11px;color:var(--accent-teal)">● Online · AI-Powered Learning Assistant</div>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" onclick="clearChat()" title="New Chat"><i class="fas fa-plus"></i></button>
+        <button class="icon-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
+        <div class="topbar-avatar">AS</div>
+      </div>
+    </header>
+
+    <div style="padding:20px;display:flex;flex-direction:column;flex:1;height:calc(100vh - 64px)">
+      <div class="chat-container">
+
+        <!-- Chat Sidebar (History) -->
+        <div class="chat-sidebar">
+          <div class="chat-sidebar-header">
+            <button class="btn btn-primary btn-sm w-full" style="justify-content:center" onclick="clearChat()">
+              <i class="fas fa-plus"></i> New Conversation
+            </button>
+          </div>
+          <div class="chat-history">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);padding:8px 12px 4px">Today</div>
+            <div class="chat-history-item active">
+              <i class="fas fa-comment" style="margin-right:6px;color:var(--accent-teal);font-size:11px"></i> VLOOKUP business examples
+            </div>
+            <div class="chat-history-item">
+              <i class="fas fa-comment" style="margin-right:6px;color:var(--text-muted);font-size:11px"></i> SQL JOIN types explained
+            </div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);padding:8px 12px 4px">Yesterday</div>
+            <div class="chat-history-item">
+              <i class="fas fa-comment" style="margin-right:6px;color:var(--text-muted);font-size:11px"></i> p-value interpretation
+            </div>
+            <div class="chat-history-item">
+              <i class="fas fa-comment" style="margin-right:6px;color:var(--text-muted);font-size:11px"></i> Pandas groupby tutorial
+            </div>
+            <div class="chat-history-item">
+              <i class="fas fa-comment" style="margin-right:6px;color:var(--text-muted);font-size:11px"></i> Career roadmap advice
+            </div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);padding:8px 12px 4px">This Week</div>
+            <div class="chat-history-item">
+              <i class="fas fa-comment" style="margin-right:6px;color:var(--text-muted);font-size:11px"></i> Power BI DAX formulas
+            </div>
+            <div class="chat-history-item">
+              <i class="fas fa-comment" style="margin-right:6px;color:var(--text-muted);font-size:11px"></i> Interview prep tips
+            </div>
+          </div>
+          <div style="padding:12px;border-top:1px solid var(--border)">
+            <div style="font-size:11px;color:var(--text-muted);text-align:center">23 conversations this month</div>
+          </div>
+        </div>
+
+        <!-- Chat Main Area -->
+        <div class="chat-main">
+          <div class="chat-messages" id="chatMessages">
+
+            <!-- Welcome Message -->
+            <div class="chat-msg ai">
+              <div class="chat-msg-avatar">🤖</div>
+              <div class="chat-msg-bubble">
+                <strong>Hi Alex! I'm DataMentor 👋</strong><br><br>
+                I'm your AI-powered data analysis learning assistant. I can help you with:<br><br>
+                📊 <strong>Excel</strong> — formulas, pivot tables, dashboards<br>
+                🗄️ <strong>SQL</strong> — queries, joins, optimization<br>
+                🐍 <strong>Python</strong> — pandas, numpy, visualizations<br>
+                📈 <strong>Statistics</strong> — hypothesis testing, regression<br>
+                ⚡ <strong>Power BI / Tableau</strong> — DAX, dashboards<br>
+                🤖 <strong>Machine Learning</strong> — algorithms, model evaluation<br>
+                💼 <strong>Career</strong> — interview prep, CV tips<br><br>
+                Try one of the suggestions below or ask me anything! 👇
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Input Area -->
+          <div class="chat-input-area">
+            <div class="chat-suggestions">
+              <button class="chat-suggestion-btn" data-msg="Explain VLOOKUP with a business example">📊 VLOOKUP explained</button>
+              <button class="chat-suggestion-btn" data-msg="What's the difference between SQL JOIN types? Give me examples.">🗄️ SQL JOIN types</button>
+              <button class="chat-suggestion-btn" data-msg="Help me understand p-values and statistical significance">📈 p-values explained</button>
+              <button class="chat-suggestion-btn" data-msg="Show me pandas code for data cleaning">🐍 Pandas data cleaning</button>
+              <button class="chat-suggestion-btn" data-msg="What skills do I need to become a data analyst?">💼 Skills for DA role</button>
+              <button class="chat-suggestion-btn" data-msg="Explain the difference between correlation and causation with an example">📉 Correlation vs causation</button>
+            </div>
+            <div class="chat-input-row">
+              <textarea id="chatInput" class="chat-textarea" placeholder="Ask DataMentor anything about data analysis..." rows="1"></textarea>
+              <button id="sendBtn" class="btn btn-teal" style="padding:10px 16px;flex-shrink:0">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+            <div style="margin-top:8px;font-size:11px;color:var(--text-muted);text-align:center">
+              DataMentor provides educational guidance. Always verify important information from official documentation.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+<div class="toast-container"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function clearChat() {
+    const messages = document.getElementById('chatMessages');
+    messages.innerHTML = `
+      <div class="chat-msg ai">
+        <div class="chat-msg-avatar">🤖</div>
+        <div class="chat-msg-bubble">
+          <strong>New conversation started! 🚀</strong><br><br>
+          What would you like to learn about today? I'm here to help with Excel, SQL, Python, Statistics, Power BI, or anything data analysis related!
+        </div>
+      </div>
+    `;
+    addXP(2, 'Started new conversation');
+  }
+
+  // Extended AI responses for assistant page
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add more responses
+    if (typeof AI_RESPONSES !== 'undefined') {
+      AI_RESPONSES['career'] = `Great question about becoming a **Data Analyst**! Here's your priority skills list:
+
+**🔑 Core Must-Have Skills (2025)**
+1. **SQL** — #1 skill in every job posting
+2. **Excel** — Still used in 90% of companies
+3. **Python** (Pandas, NumPy) — Fast becoming essential
+4. **Power BI or Tableau** — Visual storytelling
+5. **Statistics** — A/B testing, regression basics
+
+**📈 Your Learning Order:**
+\`\`\`
+Excel → Statistics → SQL → Python → BI Tools → ML
+\`\`\`
+
+**💼 What Employers Look For:**
+- Portfolio of 4–6 real projects
+- Strong SQL skills (always tested in interviews)
+- Ability to explain findings to non-technical stakeholders
+- Domain knowledge (finance, retail, healthcare, etc.)
+
+**⏱️ Realistic Timeline:**
+- 6 months → Junior Data Analyst ready
+- 12 months → Mid-level competitive
+
+You're on the right path with DataPath Pro! Keep going 💪`;
+
+      AI_RESPONSES['correlation'] = `**Correlation vs Causation** — One of the most important concepts in data analysis!
+
+**Correlation** = two variables move together (but one doesn't cause the other)
+**Causation** = one variable directly causes a change in another
+
+**Classic Example:**
+Ice cream sales and drowning rates are highly correlated. Does ice cream cause drowning? No! A third variable — **summer/hot weather** — causes both. This is called a *confounding variable*.
+
+**Business Example:**
+You notice that stores with more employees have higher sales.
+- **Correlation?** Yes ✓
+- **Causation?** Not necessarily — bigger stores hire more staff AND sell more. You'd need a controlled experiment.
+
+**How to Establish Causation:**
+1. **Randomized Controlled Trial (RCT)** — gold standard, like A/B testing
+2. **Temporal precedence** — cause must precede effect
+3. **Rule out confounders** — use regression, matching
+4. **Mechanism** — understand HOW the cause produces the effect
+
+**Rule of Thumb:** Correlation is easy to find; causation requires careful experimental design or statistical methods like instrumental variables or difference-in-differences.`;
+    }
+  });
+</script>
+</body>
+</html>

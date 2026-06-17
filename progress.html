@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPath Pro — My Progress</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">📊</div><div class="logo-text">DataPath <span>Pro</span></div></div>
+    <div class="sidebar-user"><div class="user-avatar">AS</div><div class="user-info"><div class="user-name">Alex Student</div><div class="user-level">Analyst • 6,240 XP</div></div></div>
+    <div class="sidebar-xp"><div class="xp-label"><span class="xp-current">6,240 XP</span><span>→ Expert</span></div><div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:25%"></div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="roadmap.html" class="nav-item"><i class="fas fa-map"></i> Learning Roadmap</a>
+      <a href="courses.html" class="nav-item"><i class="fas fa-book-open"></i> Courses</a>
+      <a href="progress.html" class="nav-item active"><i class="fas fa-chart-line"></i> My Progress</a>
+      <div class="nav-section-label">Workspace</div>
+      <a href="projects.html" class="nav-item"><i class="fas fa-folder-open"></i> Portfolio</a>
+      <a href="notes.html" class="nav-item"><i class="fas fa-sticky-note"></i> Notes</a>
+      <a href="interview.html" class="nav-item"><i class="fas fa-briefcase"></i> Interview Prep</a>
+      <a href="assistant.html" class="nav-item"><i class="fas fa-robot"></i> AI Assistant</a>
+    </nav>
+    <div class="sidebar-streak"><div class="streak-icon">🔥</div><div class="streak-info"><div class="streak-count">12</div><div class="streak-label">day streak</div></div></div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title">My Progress <span>Performance Analytics</span></div>
+      <div style="display:flex;gap:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:3px">
+        <button class="tab-btn active" style="flex:none;padding:6px 12px;font-size:12px">Week</button>
+        <button class="tab-btn" style="flex:none;padding:6px 12px;font-size:12px">Month</button>
+        <button class="tab-btn" style="flex:none;padding:6px 12px;font-size:12px">All Time</button>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
+        <button class="icon-btn"><i class="fas fa-bell"></i><div class="notif-dot"></div></button>
+        <div class="topbar-avatar">AS</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- Stats Row -->
+      <div class="grid-4 mb-24">
+        <div class="stat-card purple">
+          <div class="stat-icon purple"><i class="fas fa-clock"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" data-counter="87" data-suffix="h">87h</div>
+            <div class="stat-label">Total Study Time</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> +4.5h this week</div>
+          </div>
+        </div>
+        <div class="stat-card teal">
+          <div class="stat-icon teal"><i class="fas fa-check-double"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" data-counter="48">48</div>
+            <div class="stat-label">Lessons Completed</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> 7 this week</div>
+          </div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-icon orange"><i class="fas fa-star"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">78%</div>
+            <div class="stat-label">Avg Quiz Score</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> +3% vs last month</div>
+          </div>
+        </div>
+        <div class="stat-card pink">
+          <div class="stat-icon pink"><i class="fas fa-fire"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" data-counter="12">12</div>
+            <div class="stat-label">Day Streak</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> Best: 21 days</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="grid-2 mb-24" style="gap:20px">
+
+        <!-- Study Hours Chart -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Study Hours — This Week</div>
+          </div>
+          <div class="chart-wrap" style="height:200px">
+            <canvas id="studyHoursChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Quiz Scores Chart -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Quiz Scores by Subject</div>
+          </div>
+          <div class="chart-wrap" style="height:200px">
+            <canvas id="quizScoresChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill Radar + Time Distribution -->
+      <div class="grid-2 mb-24" style="gap:20px">
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Skill Proficiency Map</div>
+            <div class="card-subtitle">Current vs target levels</div>
+          </div>
+          <div class="chart-wrap" style="height:240px">
+            <canvas id="skillRadar"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Time Distribution</div>
+            <div class="card-subtitle">Hours per subject (all time)</div>
+          </div>
+          <div class="chart-wrap" style="height:240px">
+            <canvas id="timeDistChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Study Activity Heatmap -->
+      <div class="card mb-24">
+        <div class="card-header">
+          <div class="card-title">Study Activity — Last 90 Days</div>
+        </div>
+        <div id="progressHeatmap" style="margin-bottom:12px"></div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <span style="font-size:12px;color:var(--text-muted)">Less</span>
+          <div style="display:flex;gap:3px">
+            <div style="width:12px;height:12px;border-radius:2px;background:var(--bg-input)"></div>
+            <div style="width:12px;height:12px;border-radius:2px;background:rgba(108,99,255,0.2)"></div>
+            <div style="width:12px;height:12px;border-radius:2px;background:rgba(108,99,255,0.4)"></div>
+            <div style="width:12px;height:12px;border-radius:2px;background:rgba(108,99,255,0.65)"></div>
+            <div style="width:12px;height:12px;border-radius:2px;background:var(--accent-purple)"></div>
+          </div>
+          <span style="font-size:12px;color:var(--text-muted)">More</span>
+          <span style="font-size:12px;color:var(--text-secondary);margin-left:auto">Total: 87 hours across 90 days</span>
+        </div>
+      </div>
+
+      <!-- AI Insights -->
+      <div class="card mb-24" style="border:1px solid rgba(0,212,170,0.2);background:rgba(0,212,170,0.03)">
+        <div class="card-header">
+          <div class="card-title"><span style="font-size:16px">🤖</span> AI-Powered Learning Insights</div>
+        </div>
+        <div class="grid-2" style="gap:12px">
+          ${[
+            { icon:'💪', color:'var(--accent-teal)', title:'Your Strength', text:'Excel formulas — you\'re scoring 92% on average. You have exceptional attention to formula logic.' },
+            { icon:'📈', color:'var(--accent-purple)', title:'Best Study Time', text:'You\'re 40% more productive on Tuesday and Thursday mornings. Schedule harder topics then.' },
+            { icon:'⚠️', color:'var(--accent-yellow)', title:'Needs Attention', text:'Statistics quiz scores are 78%. Review probability distributions — spend 30 min with practice problems.' },
+            { icon:'🚀', color:'var(--accent-orange)', title:'Recommended Next', text:'After Phase 2, focus on SQL immediately — it\'s the #1 skill requested in data analyst job postings.' },
+          ].map(ins => `
+            <div style="display:flex;gap:12px;padding:14px;background:var(--bg-input);border-radius:10px">
+              <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">${ins.icon}</div>
+              <div>
+                <div style="font-size:12px;font-weight:700;color:${ins.color};margin-bottom:3px">${ins.title}</div>
+                <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">${ins.text}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Course Progress -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Course-by-Course Progress</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          ${[
+            { course:'Excel for Data Analysis',          emoji:'📊', prog:65, quizAvg:92, status:'active'    },
+            { course:'Statistics for Data Analysis',     emoji:'📈', prog:35, quizAvg:78, status:'active'    },
+            { course:'SQL & Database Fundamentals',      emoji:'🗄️', prog:0,  quizAvg:null,status:'locked'  },
+            { course:'Python for Data Analysis',         emoji:'🐍', prog:0,  quizAvg:null,status:'locked'  },
+            { course:'Data Visualization',               emoji:'🎨', prog:0,  quizAvg:null,status:'locked'  },
+            { course:'Power BI',                         emoji:'⚡', prog:0,  quizAvg:null,status:'locked'  },
+            { course:'Tableau',                          emoji:'📉', prog:0,  quizAvg:null,status:'locked'  },
+            { course:'Business Analytics',               emoji:'💼', prog:0,  quizAvg:null,status:'locked'  },
+            { course:'Machine Learning Fundamentals',    emoji:'🤖', prog:0,  quizAvg:null,status:'locked'  },
+          ].map(c => `
+            <div style="display:flex;align-items:center;gap:14px;padding:12px;background:var(--bg-input);border-radius:10px">
+              <div style="font-size:24px;flex-shrink:0">${c.emoji}</div>
+              <div style="flex:1;min-width:120px">
+                <div style="font-size:13px;font-weight:600;margin-bottom:6px">${c.course}</div>
+                <div class="progress-bar" style="height:5px">
+                  <div class="progress-fill ${c.prog>0?'':'gray'}" style="width:${c.prog}%;${c.prog===0?'background:var(--bg-card)':''}"></div>
+                </div>
+              </div>
+              <div style="font-size:13px;font-weight:700;width:40px;text-align:right;color:${c.prog>0?'var(--accent-teal)':'var(--text-muted)'}">${c.prog}%</div>
+              <div style="width:60px;text-align:center">
+                ${c.quizAvg ? `<span style="font-size:12px;font-weight:700;color:var(--accent-purple)">${c.quizAvg}%</span><div style="font-size:10px;color:var(--text-muted)">quiz avg</div>` : `<span class="badge badge-gray">Locked</span>`}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<div class="toast-container"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

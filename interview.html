@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPath Pro — Interview Prep</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">📊</div><div class="logo-text">DataPath <span>Pro</span></div></div>
+    <div class="sidebar-user"><div class="user-avatar">AS</div><div class="user-info"><div class="user-name">Alex Student</div><div class="user-level">Analyst • 6,240 XP</div></div></div>
+    <div class="sidebar-xp"><div class="xp-label"><span class="xp-current">6,240 XP</span><span>→ Expert</span></div><div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:25%"></div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="roadmap.html" class="nav-item"><i class="fas fa-map"></i> Learning Roadmap</a>
+      <a href="courses.html" class="nav-item"><i class="fas fa-book-open"></i> Courses</a>
+      <a href="progress.html" class="nav-item"><i class="fas fa-chart-line"></i> My Progress</a>
+      <div class="nav-section-label">Workspace</div>
+      <a href="projects.html" class="nav-item"><i class="fas fa-folder-open"></i> Portfolio</a>
+      <a href="notes.html" class="nav-item"><i class="fas fa-sticky-note"></i> Notes</a>
+      <a href="interview.html" class="nav-item active"><i class="fas fa-briefcase"></i> Interview Prep</a>
+      <a href="assistant.html" class="nav-item"><i class="fas fa-robot"></i> AI Assistant</a>
+    </nav>
+    <div class="sidebar-streak"><div class="streak-icon">🔥</div><div class="streak-info"><div class="streak-count">12</div><div class="streak-label">day streak</div></div></div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title">Interview Prep <span>Get Hired as a Data Analyst</span></div>
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
+        <button class="icon-btn"><i class="fas fa-bell"></i><div class="notif-dot"></div></button>
+        <div class="topbar-avatar">AS</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- Readiness Banner -->
+      <div style="background:linear-gradient(135deg,#0d2030,#1a1240);border:1px solid rgba(108,99,255,0.2);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <div style="font-size:48px">🎯</div>
+        <div style="flex:1">
+          <div style="font-size:18px;font-weight:800;margin-bottom:4px">Interview Readiness Score</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Based on your current skills and quiz performance</div>
+          <div style="background:rgba(0,0,0,0.3);border-radius:99px;height:10px;overflow:hidden;max-width:400px">
+            <div style="height:100%;background:linear-gradient(90deg,var(--accent-orange),var(--accent-yellow));border-radius:99px;width:45%;transition:width 1s ease"></div>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:6px">45% ready · Complete phases 3–5 to reach 80%+</div>
+        </div>
+        <div style="display:flex;gap:12px">
+          <div style="text-align:center;padding:12px 16px;background:rgba(255,255,255,0.05);border-radius:10px">
+            <div style="font-size:22px;font-weight:800;color:var(--accent-teal)">8</div>
+            <div style="font-size:11px;color:var(--text-muted)">Practiced</div>
+          </div>
+          <div style="text-align:center;padding:12px 16px;background:rgba(255,255,255,0.05);border-radius:10px">
+            <div style="font-size:22px;font-weight:800;color:var(--accent-purple)">54+</div>
+            <div style="font-size:11px;color:var(--text-muted)">Questions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Tabs -->
+      <div data-tab-group="interview">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="technical">Technical Questions</button>
+          <button class="tab-btn" data-tab="behavioral">Behavioral Questions</button>
+          <button class="tab-btn" data-tab="cv">CV Builder</button>
+          <button class="tab-btn" data-tab="linkedin">LinkedIn Tips</button>
+          <button class="tab-btn" data-tab="mock">Mock Interview</button>
+        </div>
+
+        <!-- Technical Questions -->
+        <div class="tab-content active" data-tab-content="technical">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+            <button class="btn btn-primary btn-sm" data-interview-category="technical" onclick="buildInterviewQuestions('interviewQList','technical')">All Topics</button>
+            ${['SQL','Python','Statistics','Excel','ML','Career'].map(t => `
+              <button class="btn btn-ghost btn-sm" onclick="filterQuestions('${t}')"><i class="fas fa-tag"></i> ${t}</button>
+            `).join('')}
+          </div>
+          <div id="interviewQList"></div>
+        </div>
+
+        <!-- Behavioral Questions -->
+        <div class="tab-content" data-tab-content="behavioral">
+          <div style="background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.15);border-radius:10px;padding:16px;margin-bottom:16px">
+            <div style="font-size:14px;font-weight:700;margin-bottom:6px"><i class="fas fa-lightbulb" style="color:var(--accent-yellow)"></i> Use the STAR Method</div>
+            <div style="font-size:13px;color:var(--text-secondary)"><strong>S</strong>ituation → <strong>T</strong>ask → <strong>A</strong>ction → <strong>R</strong>esult. Always quantify your impact with numbers.</div>
+          </div>
+          <div id="behavioralQList"></div>
+        </div>
+
+        <!-- CV Builder -->
+        <div class="tab-content" data-tab-content="cv">
+          <div class="grid-2" style="gap:20px;align-items:start">
+            <div>
+              <div class="card mb-16">
+                <div class="card-title mb-12"><i class="fas fa-check-circle" style="color:var(--accent-teal)"></i> Data Analyst CV Checklist</div>
+                ${[
+                  { item:'Professional summary with "data analyst" keywords', done:true },
+                  { item:'Quantified bullet points (e.g., "reduced report time by 40%")', done:true },
+                  { item:'Technical skills section (Excel, SQL, Python, Power BI)', done:false },
+                  { item:'Portfolio link (GitHub, Tableau Public)', done:false },
+                  { item:'Business impact metrics for each role', done:false },
+                  { item:'Education relevant to analytics', done:true },
+                  { item:'Certifications (Google DA, Microsoft, etc.)', done:false },
+                  { item:'Tailored to each job description', done:false },
+                ].map(c => `
+                  <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)">
+                    <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${c.done?'var(--accent-teal)':'var(--border)'};background:${c.done?'var(--accent-teal)':'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer" onclick="this.style.background=this.style.background?'':'var(--accent-teal)'">
+                      ${c.done?'<i class="fas fa-check" style="font-size:9px;color:white"></i>':''}
+                    </div>
+                    <span style="font-size:13px;color:${c.done?'var(--text-secondary)':'var(--text-primary)'};text-decoration:${c.done?'none':'none'}">${c.item}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="card">
+                <div class="card-title mb-12"><i class="fas fa-star" style="color:var(--accent-yellow)"></i> Power Words for Data Analysts</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  ${['Analyzed','Visualized','Automated','Optimized','Identified','Modeled','Forecasted','Segmented','Extracted','Transformed','Presented','Recommended','Reduced','Increased','Implemented','Designed','Built','Deployed'].map(w => `
+                    <span class="badge badge-purple">${w}</span>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="card">
+                <div class="card-title mb-12"><i class="fas fa-file-alt" style="color:var(--accent-teal)"></i> CV Template Preview</div>
+                <div class="cv-section">
+                  <div class="cv-header-block">
+                    <div class="cv-name">Alex Student</div>
+                    <div class="cv-role">Junior Data Analyst | Business Intelligence | Python & SQL</div>
+                    <div class="cv-contact">
+                      <span>📧 alex@email.com</span>
+                      <span>📍 London, UK</span>
+                      <span>💼 linkedin.com/in/alexstudent</span>
+                      <span>🐙 github.com/alexstudent</span>
+                    </div>
+                  </div>
+
+                  <div class="cv-section-title">Professional Summary</div>
+                  <div style="font-size:12px;color:#444;line-height:1.6">Business Administration graduate transitioning into Data Analytics with hands-on skills in Excel, Python, SQL, and Power BI. Completed 6 real-world data projects demonstrating ability to extract insights from complex datasets and communicate findings to business stakeholders. Seeking a Junior Data Analyst role to apply analytical skills to drive data-driven decisions.</div>
+
+                  <div class="cv-section-title">Technical Skills</div>
+                  <div style="font-size:12px;color:#444;line-height:2">
+                    <strong>Data Analysis:</strong> Python (Pandas, NumPy), SQL (PostgreSQL, MySQL), Excel (Advanced)<br>
+                    <strong>Visualisation:</strong> Power BI, Tableau, Matplotlib, Seaborn<br>
+                    <strong>Statistics:</strong> Hypothesis Testing, Regression, A/B Testing<br>
+                    <strong>Tools:</strong> Jupyter Notebook, Git, VS Code, Google Sheets
+                  </div>
+
+                  <div class="cv-section-title">Projects</div>
+                  <div class="cv-entry">
+                    <div class="cv-entry-title">Customer Segmentation Analysis · Python, SQL, K-Means</div>
+                    <div class="cv-entry-sub">Segmented 50K customers into 5 groups using RFM analysis, identifying £2.4M revenue opportunity</div>
+                  </div>
+                  <div class="cv-entry">
+                    <div class="cv-entry-title">Sales Performance Dashboard · Excel, Power BI</div>
+                    <div class="cv-entry-sub">Built interactive dashboard tracking KPIs across 50 stores; reduced reporting time by 3 hours/week</div>
+                  </div>
+
+                  <div class="cv-section-title">Education</div>
+                  <div class="cv-entry">
+                    <div class="cv-entry-title">BSc Business Administration — University of [City]</div>
+                    <div class="cv-entry-sub">2021–2024 · Modules: Business Statistics, Operations Research, Marketing Analytics</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary w-full" style="margin-top:12px;justify-content:center" onclick="showToast('CV Download','Your CV template is ready!','success','📄')">
+                  <i class="fas fa-download"></i> Download CV Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LinkedIn Tips -->
+        <div class="tab-content" data-tab-content="linkedin">
+          <div class="grid-2" style="gap:16px">
+            ${[
+              { icon:'📸', title:'Profile Photo', desc:'Professional headshot — increases profile views by 14x. Bright background, clear face, business casual attire.', priority:'High' },
+              { icon:'📝', title:'Headline', desc:'Don\'t just put your job title. Use: "Business Admin Graduate | Aspiring Data Analyst | Python · SQL · Power BI". Include keywords recruiters search.', priority:'High' },
+              { icon:'📖', title:'About Section', desc:'Tell your data story in 3–4 short paragraphs: Who you are → Your analytical skills → What you\'ve achieved → What you\'re looking for. End with a CTA.', priority:'High' },
+              { icon:'🛠️', title:'Featured Section', desc:'Pin your 2–3 best projects with screenshots. If you have a Power BI or Tableau dashboard, link to it here. This is prime real estate — use it!', priority:'High' },
+              { icon:'📊', title:'Skills Section', desc:'Add all technical skills: SQL, Python, Power BI, Tableau, Excel, Pandas, Statistics, Data Visualization. Endorse others to get endorsements back.', priority:'Medium' },
+              { icon:'🤝', title:'Networking', desc:'Connect with Data Analysts at target companies. Send a personalised message: "I\'m learning data analysis and loved your article on [topic]..." — not a generic request.', priority:'Medium' },
+              { icon:'✍️', title:'Content Creation', desc:'Post weekly about your learning: share a chart you made, a SQL trick you learned, or a dataset you analyzed. Visibility builds opportunities.', priority:'Medium' },
+              { icon:'🔔', title:'Open to Work', desc:'Turn on "Open to Work" visible to recruiters only. Set job title as "Data Analyst", "Business Intelligence Analyst", "Junior Data Analyst".', priority:'High' },
+            ].map(tip => `
+              <div class="card" style="border:1px solid ${tip.priority==='High'?'rgba(0,212,170,0.15)':'var(--border)'}">
+                <div style="display:flex;align-items:flex-start;gap:12px">
+                  <div style="font-size:28px">${tip.icon}</div>
+                  <div>
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+                      <div style="font-size:14px;font-weight:700">${tip.title}</div>
+                      <span class="badge ${tip.priority==='High'?'badge-green':'badge-yellow'}">${tip.priority}</span>
+                    </div>
+                    <div style="font-size:13px;color:var(--text-secondary);line-height:1.5">${tip.desc}</div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Mock Interview -->
+        <div class="tab-content" data-tab-content="mock">
+          <div style="max-width:680px;margin:0 auto">
+            <div style="background:linear-gradient(135deg,rgba(108,99,255,0.08),rgba(0,212,170,0.04));border:1px solid rgba(108,99,255,0.15);border-radius:var(--radius-lg);padding:28px;text-align:center;margin-bottom:24px">
+              <div style="font-size:48px;margin-bottom:12px">🎤</div>
+              <div style="font-size:20px;font-weight:800;margin-bottom:8px">Mock Interview Simulator</div>
+              <div style="font-size:13px;color:var(--text-secondary);max-width:400px;margin:0 auto 20px">Practice answering data analyst interview questions under time pressure. Get instant feedback on your answers.</div>
+              <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                <button class="btn btn-primary btn-lg" onclick="startMockInterview()"><i class="fas fa-play"></i> Start 30-Min Mock Interview</button>
+                <button class="btn btn-ghost" onclick="startMockInterview('quick')"><i class="fas fa-bolt"></i> Quick 10-Min Session</button>
+              </div>
+            </div>
+
+            <div class="card" id="mockInterviewCard" style="display:none">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+                <div style="font-size:14px;font-weight:700">Question 1 of 5</div>
+                <div id="mockTimer" style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--accent-orange)">2:00</div>
+              </div>
+              <div id="mockQuestion" style="font-size:16px;font-weight:600;margin-bottom:20px;padding:16px;background:var(--bg-input);border-radius:10px;line-height:1.5"></div>
+              <textarea id="mockAnswer" class="chat-textarea" style="width:100%;min-height:140px;display:block" placeholder="Type your answer here... Use STAR method: Situation, Task, Action, Result"></textarea>
+              <div style="display:flex;gap:10px;margin-top:12px">
+                <button class="btn btn-ghost" onclick="skipMockQuestion()"><i class="fas fa-forward"></i> Skip</button>
+                <button class="btn btn-primary" style="margin-left:auto" onclick="submitMockAnswer()"><i class="fas fa-check"></i> Submit Answer</button>
+              </div>
+            </div>
+
+            <!-- Common Topics -->
+            <div class="card">
+              <div class="card-title mb-12"><i class="fas fa-map-signs" style="color:var(--accent-purple)"></i> Most Common Interview Topics</div>
+              <div class="grid-2" style="gap:10px">
+                ${[
+                  { topic:'SQL Queries', pct:95, note:'Always asked — practice JOINs, window functions' },
+                  { topic:'Python/Pandas', pct:85, note:'Data manipulation and EDA are key' },
+                  { topic:'Statistics', pct:80, note:'A/B testing, p-values, regression concepts' },
+                  { topic:'Business Cases', pct:75, note:'Explain your thought process out loud' },
+                  { topic:'Excel/Power BI', pct:70, note:'Pivot tables, VLOOKUP, DAX basics' },
+                  { topic:'Communication', pct:90, note:'Explain technical concepts simply' },
+                ].map(t => `
+                  <div style="padding:12px;background:var(--bg-input);border-radius:8px">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                      <span style="font-size:12px;font-weight:600">${t.topic}</span>
+                      <span style="font-size:12px;color:var(--accent-teal);font-weight:700">${t.pct}%</span>
+                    </div>
+                    <div class="progress-bar" style="margin-bottom:6px"><div class="progress-fill teal" style="width:${t.pct}%"></div></div>
+                    <div style="font-size:11px;color:var(--text-muted)">${t.note}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<div class="toast-container"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  let mockTimerInterval;
+  let mockTimeLeft = 120;
+  const mockQuestions = [
+    'Walk me through how you would approach an analysis project to identify why a company\'s monthly sales dropped 15% in Q3.',
+    'Write a SQL query to find the top 5 products by revenue in each region for the current year.',
+    'Explain the difference between correlation and causation with a business example.',
+    'How would you handle a situation where 30% of your dataset has missing values?',
+    'A stakeholder disagrees with your analysis. How do you handle it?'
+  ];
+  let currentMockQ = 0;
+
+  function startMockInterview(type) {
+    currentMockQ = 0;
+    mockTimeLeft = type === 'quick' ? 120 : 180;
+    document.getElementById('mockInterviewCard').style.display = 'block';
+    showMockQuestion();
+  }
+
+  function showMockQuestion() {
+    if (currentMockQ >= mockQuestions.length) {
+      document.getElementById('mockQuestion').textContent = '🎉 Mock interview complete! Great work practicing.';
+      document.getElementById('mockAnswer').style.display = 'none';
+      clearInterval(mockTimerInterval);
+      showToast('Mock Interview Complete!', '+50 XP for practicing', 'achievement', '🎤');
+      addXP(50, 'Mock interview completed');
+      return;
+    }
+    document.getElementById('mockQuestion').textContent = `Q${currentMockQ+1}: ${mockQuestions[currentMockQ]}`;
+    document.getElementById('mockAnswer').value = '';
+    clearInterval(mockTimerInterval);
+    mockTimerInterval = setInterval(() => {
+      mockTimeLeft--;
+      const m = Math.floor(mockTimeLeft/60);
+      const s = mockTimeLeft%60;
+      document.getElementById('mockTimer').textContent = `${m}:${s.toString().padStart(2,'0')}`;
+      if (mockTimeLeft <= 30) document.getElementById('mockTimer').style.color = 'var(--accent-pink)';
+      if (mockTimeLeft <= 0) { clearInterval(mockTimerInterval); submitMockAnswer(); }
+    }, 1000);
+  }
+
+  function submitMockAnswer() {
+    clearInterval(mockTimerInterval);
+    const answer = document.getElementById('mockAnswer').value;
+    if (answer.length > 20) addXP(10, 'Interview answer submitted');
+    currentMockQ++;
+    mockTimeLeft = 180;
+    document.getElementById('mockTimer').style.color = 'var(--accent-orange)';
+    showMockQuestion();
+  }
+
+  function skipMockQuestion() {
+    clearInterval(mockTimerInterval);
+    currentMockQ++;
+    mockTimeLeft = 180;
+    showMockQuestion();
+  }
+
+  function filterQuestions(topic) {
+    if (typeof INTERVIEW_QS === 'undefined') return;
+    const allQ = [...(INTERVIEW_QS.technical||[]), ...(INTERVIEW_QS.behavioral||[])];
+    const filtered = { technical: allQ.filter(q => q.topic === topic) };
+    const orignal = INTERVIEW_QS;
+    if (filtered.technical.length === 0) {
+      showToast('No questions found', `No ${topic} questions yet`, 'info', 'ℹ️');
+      return;
+    }
+    // temporarily build
+    const container = document.getElementById('interviewQList');
+    if (!container) return;
+    container.innerHTML = filtered.technical.map(q => `
+      <div class="question-accordion" style="margin-bottom:8px">
+        <div class="accordion-header" onclick="this.nextElementSibling.classList.toggle('open');this.querySelector('.accordion-icon').style.transform=this.nextElementSibling.classList.contains('open')?'rotate(180deg)':''">
+          <span class="badge badge-${q.difficulty==='Beginner'?'green':q.difficulty==='Intermediate'?'yellow':'orange'}" style="flex-shrink:0">${q.difficulty}</span>
+          <span class="accordion-title">${q.q}</span>
+          <span class="badge badge-purple" style="flex-shrink:0">${q.topic}</span>
+          <i class="fas fa-chevron-down accordion-icon" style="color:var(--text-muted);transition:transform 0.2s;flex-shrink:0"></i>
+        </div>
+        <div class="accordion-body"><p>${q.ans}</p><div style="margin-top:12px"><button class="btn btn-ghost btn-sm" onclick="addXP(5,'Q reviewed')"><i class="fas fa-check"></i> Mark as Practiced</button></div></div>
+      </div>
+    `).join('');
+  }
+
+  // Build behavioral on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      if (typeof INTERVIEW_QS !== 'undefined') {
+        buildInterviewQuestions('behavioralQList', 'behavioral');
+      }
+    }, 500);
+  });
+</script>
+</body>
+</html>

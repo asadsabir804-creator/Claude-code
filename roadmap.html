@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPath Pro — Learning Roadmap</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">📊</div><div class="logo-text">DataPath <span>Pro</span></div></div>
+    <div class="sidebar-user"><div class="user-avatar">AS</div><div class="user-info"><div class="user-name">Alex Student</div><div class="user-level">Analyst • 6,240 XP</div></div></div>
+    <div class="sidebar-xp"><div class="xp-label"><span class="xp-current">6,240 XP</span><span>→ Expert</span></div><div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:25%"></div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="roadmap.html" class="nav-item active"><i class="fas fa-map"></i> Learning Roadmap</a>
+      <a href="courses.html" class="nav-item"><i class="fas fa-book-open"></i> Courses <span class="nav-badge">9</span></a>
+      <a href="progress.html" class="nav-item"><i class="fas fa-chart-line"></i> My Progress</a>
+      <div class="nav-section-label">Workspace</div>
+      <a href="projects.html" class="nav-item"><i class="fas fa-folder-open"></i> Portfolio</a>
+      <a href="notes.html" class="nav-item"><i class="fas fa-sticky-note"></i> Notes</a>
+      <a href="interview.html" class="nav-item"><i class="fas fa-briefcase"></i> Interview Prep</a>
+      <a href="assistant.html" class="nav-item"><i class="fas fa-robot"></i> AI Assistant <span class="nav-badge" style="background:var(--accent-teal)">AI</span></a>
+    </nav>
+    <div class="sidebar-streak"><div class="streak-icon">🔥</div><div class="streak-info"><div class="streak-count">12</div><div class="streak-label">day streak</div></div></div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title">Learning Roadmap <span>Business Admin → Data Analyst</span></div>
+      <div class="topbar-search"><i class="fas fa-search"></i><input type="text" placeholder="Search topics..."></div>
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
+        <button class="icon-btn"><i class="fas fa-bell"></i><div class="notif-dot"></div></button>
+        <div class="topbar-avatar">AS</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- Header Banner -->
+      <div style="background:linear-gradient(135deg,#0d1f3c 0%,#1a1240 50%,#0f2620 100%);border:1px solid rgba(108,99,255,0.2);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(108,99,255,0.15) 0%,transparent 70%);border-radius:50%"></div>
+        <div style="position:absolute;bottom:-30px;right:250px;width:150px;height:150px;background:radial-gradient(circle,rgba(0,212,170,0.1) 0%,transparent 70%);border-radius:50%"></div>
+        <div style="position:relative;z-index:1">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--accent-teal);margin-bottom:8px">Your Personalized Journey</div>
+              <h1 style="font-size:28px;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px">Business Admin → <span style="background:linear-gradient(135deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Data Analyst</span></h1>
+              <p style="color:var(--text-secondary);font-size:14px;max-width:560px">A structured 9-phase curriculum covering every skill demanded by top employers. Progress at your own pace — estimated completion: <strong style="color:var(--accent-teal)">6–12 months</strong>.</p>
+            </div>
+            <div style="display:flex;gap:20px">
+              <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:12px;padding:16px 20px">
+                <div style="font-size:28px;font-weight:800;color:var(--accent-purple)">2/9</div>
+                <div style="font-size:11px;color:var(--text-muted)">Phases</div>
+              </div>
+              <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:12px;padding:16px 20px">
+                <div style="font-size:28px;font-weight:800;color:var(--accent-teal)">35%</div>
+                <div style="font-size:11px;color:var(--text-muted)">Overall</div>
+              </div>
+              <div style="text-align:center;background:rgba(255,255,255,0.05);border-radius:12px;padding:16px 20px">
+                <div style="font-size:28px;font-weight:800;color:var(--accent-orange)">45w</div>
+                <div style="font-size:11px;color:var(--text-muted)">Remaining</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overall Progress -->
+          <div style="margin-top:20px">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-secondary);margin-bottom:6px">
+              <span>Overall Progress</span><span>Phase 2 of 9 Active</span>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);border-radius:99px;height:8px;overflow:hidden">
+              <div style="height:100%;background:linear-gradient(90deg,var(--accent-teal),var(--accent-purple));border-radius:99px;width:18%;transition:width 1s ease"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px">
+              <span style="font-size:11px;color:var(--text-muted)">🎓 Complete Beginner</span>
+              <span style="font-size:11px;color:var(--text-muted)">Job-Ready Data Analyst 💼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase Overview Pills -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px">
+        <div style="padding:6px 14px;border-radius:99px;background:rgba(0,212,170,0.15);border:1px solid rgba(0,212,170,0.3);font-size:12px;font-weight:600;color:var(--accent-teal);display:flex;align-items:center;gap:6px">
+          <i class="fas fa-check-circle"></i> Phase 1 Complete
+        </div>
+        <div style="padding:6px 14px;border-radius:99px;background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);font-size:12px;font-weight:600;color:var(--accent-purple);display:flex;align-items:center;gap:6px">
+          <i class="fas fa-spinner fa-spin" style="font-size:10px"></i> Phase 2 Active — 35%
+        </div>
+        <div style="padding:6px 14px;border-radius:99px;background:var(--bg-card);border:1px solid var(--border);font-size:12px;color:var(--text-muted)">
+          <i class="fas fa-lock" style="font-size:10px"></i> Phases 3–9 Locked
+        </div>
+      </div>
+
+      <!-- Roadmap -->
+      <div style="display:grid;grid-template-columns:1fr;gap:0;max-width:860px">
+        <div class="roadmap-container">
+          <div class="roadmap-line"></div>
+          <div id="roadmapContainer"></div>
+        </div>
+      </div>
+
+      <!-- Recommended Resources -->
+      <div class="card mt-16">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-bookmark" style="color:var(--accent-purple)"></i> Recommended Resources</div>
+        </div>
+        <div class="grid-3" style="gap:12px">
+          ${[
+            { icon:'📚', title:'Storytelling with Data', author:'Cole Nussbaumer Knaflic', type:'Book', badge:'badge-blue' },
+            { icon:'🎓', title:'Google Data Analytics Certificate', author:'Coursera · 6 months', type:'Course', badge:'badge-purple' },
+            { icon:'💻', title:'Mode Analytics SQL Tutorial', author:'mode.com · Free', type:'Tutorial', badge:'badge-green' },
+            { icon:'📺', title:'StatQuest with Josh Starmer', author:'YouTube · Statistics', type:'Video', badge:'badge-orange' },
+            { icon:'🌐', title:'Kaggle Learn', author:'Free micro-courses', type:'Platform', badge:'badge-teal' },
+            { icon:'📊', title:'Towards Data Science', author:'Medium publication', type:'Blog', badge:'badge-pink' },
+          ].map(r => `
+            <div class="card" style="padding:14px;margin:0">
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <div style="font-size:24px">${r.icon}</div>
+                <div style="flex:1">
+                  <div style="font-size:13px;font-weight:600;margin-bottom:2px">${r.title}</div>
+                  <div style="font-size:11px;color:var(--text-muted)">${r.author}</div>
+                </div>
+                <span class="badge ${r.badge}">${r.type}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Quiz Modal -->
+<div class="modal-overlay" id="quizModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div id="quizTitle" style="font-size:16px;font-weight:700">Knowledge Check</div><div style="display:flex;gap:12px;margin-top:4px"><span id="quizCounter" class="text-xs text-muted">Question 1 of 10</span><span id="quizScore" class="text-xs text-muted">Score: 0/0</span></div></div>
+      <div style="display:flex;align-items:center;gap:10px"><div id="quizTimer" class="quiz-timer">0:30</div><button onclick="closeModal('quizModal')" style="color:var(--text-muted);font-size:20px;background:none;border:none;cursor:pointer">×</button></div>
+    </div>
+    <div class="modal-body" id="quizBody"><div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgress" style="width:0%"></div></div><div id="quizQuestion" class="quiz-question">Loading...</div><div id="quizOptions" class="quiz-options"></div></div>
+    <div class="modal-footer" id="quizFooter"><button class="btn btn-ghost" onclick="closeModal('quizModal')">Exit</button><button class="btn btn-primary" id="quizNextBtn" onclick="nextQuestion()" disabled>Next →</button></div>
+  </div>
+</div>
+<div class="toast-container"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

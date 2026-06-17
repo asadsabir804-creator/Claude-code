@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPath Pro — Dashboard</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">📊</div>
+      <div class="logo-text">DataPath <span>Pro</span></div>
+    </div>
+    <div class="sidebar-user">
+      <div class="user-avatar">AS</div>
+      <div class="user-info">
+        <div class="user-name">Alex Student</div>
+        <div class="user-level">Analyst • 6,240 XP</div>
+      </div>
+    </div>
+    <div class="sidebar-xp">
+      <div class="xp-label">
+        <span class="xp-current">6,240 XP</span>
+        <span>5,000 → Expert</span>
+      </div>
+      <div class="xp-bar-wrap">
+        <div class="xp-bar-fill" style="width:25%"></div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="index.html" class="nav-item active">
+        <i class="fas fa-home"></i> Dashboard
+      </a>
+      <a href="roadmap.html" class="nav-item">
+        <i class="fas fa-map"></i> Learning Roadmap
+      </a>
+      <a href="courses.html" class="nav-item">
+        <i class="fas fa-book-open"></i> Courses
+        <span class="nav-badge">9</span>
+      </a>
+      <a href="progress.html" class="nav-item">
+        <i class="fas fa-chart-line"></i> My Progress
+      </a>
+      <div class="nav-section-label">Workspace</div>
+      <a href="projects.html" class="nav-item">
+        <i class="fas fa-folder-open"></i> Portfolio
+        <span class="nav-badge">6</span>
+      </a>
+      <a href="notes.html" class="nav-item">
+        <i class="fas fa-sticky-note"></i> Notes
+      </a>
+      <a href="interview.html" class="nav-item">
+        <i class="fas fa-briefcase"></i> Interview Prep
+      </a>
+      <a href="assistant.html" class="nav-item">
+        <i class="fas fa-robot"></i> AI Assistant
+        <span class="nav-badge" style="background:var(--accent-teal)">AI</span>
+      </a>
+    </nav>
+    <div class="sidebar-streak">
+      <div class="streak-icon">🔥</div>
+      <div class="streak-info">
+        <div class="streak-count">12</div>
+        <div class="streak-label">day streak</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay"></div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title">Dashboard <span>Good morning! ☀️</span></div>
+      <div class="topbar-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search courses, topics... (⌘K)">
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="icon-btn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <div class="notif-dot"></div>
+        </button>
+        <div class="topbar-avatar">AS</div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner">
+        <div class="welcome-content">
+          <div class="welcome-text">
+            <h1>Welcome back, <span>Alex!</span> 👋</h1>
+            <p>You're 35% through your journey to becoming a Data Analyst. Today's goal: complete 2 Statistics lessons and review your SQL notes. Let's crush it! 🚀</p>
+            <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+              <a href="courses.html" class="btn btn-primary"><i class="fas fa-play"></i> Continue Learning</a>
+              <a href="roadmap.html" class="btn btn-ghost"><i class="fas fa-map"></i> View Roadmap</a>
+            </div>
+          </div>
+          <div class="welcome-stats">
+            <div class="welcome-stat">
+              <div class="ws-value" data-counter="87" data-suffix="h">0h</div>
+              <div class="ws-label">Hours Studied</div>
+            </div>
+            <div class="welcome-stat">
+              <div class="ws-value" data-counter="48">0</div>
+              <div class="ws-label">Lessons Done</div>
+            </div>
+            <div class="welcome-stat">
+              <div class="ws-value" data-counter="12">0</div>
+              <div class="ws-label">Day Streak 🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daily Goal Bar -->
+      <div class="card mb-20" style="padding:16px 20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:18px">🎯</span>
+            <div>
+              <div class="font-semibold">Today's Study Goal</div>
+              <div class="text-xs text-muted">35 of 60 minutes completed</div>
+            </div>
+          </div>
+          <div class="daily-goal-text text-sm font-semibold text-teal">35/60 min</div>
+        </div>
+        <div class="progress-bar">
+          <div class="daily-goal-fill progress-fill teal" style="width:58%"></div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid-4 mb-28">
+        <div class="stat-card purple">
+          <div class="stat-icon purple"><i class="fas fa-fire"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" data-counter="12">12</div>
+            <div class="stat-label">Day Streak</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> Best: 21 days</div>
+          </div>
+        </div>
+        <div class="stat-card teal">
+          <div class="stat-icon teal"><i class="fas fa-clock"></i></div>
+          <div class="stat-info">
+            <div class="stat-value" data-counter="87">87</div>
+            <div class="stat-label">Hours Studied</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> +4.5h this week</div>
+          </div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-icon orange"><i class="fas fa-star"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">78%</div>
+            <div class="stat-label">Avg Quiz Score</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> +3% this month</div>
+          </div>
+        </div>
+        <div class="stat-card pink">
+          <div class="stat-icon pink"><i class="fas fa-trophy"></i></div>
+          <div class="stat-info">
+            <div class="stat-value">6,240</div>
+            <div class="stat-label">Total XP</div>
+            <div class="stat-change up"><i class="fas fa-arrow-up"></i> Rank: Analyst</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="grid-2 mb-28" style="gap:20px">
+
+        <!-- Current Learning Path -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Current Learning Path</div>
+              <div class="card-subtitle">Phase 2 of 9 — Statistics for Data Analysis</div>
+            </div>
+            <a href="courses.html" class="btn btn-ghost btn-sm">All Courses</a>
+          </div>
+
+          <!-- Active Course -->
+          <div style="background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(0,212,170,0.05));border:1px solid rgba(108,99,255,0.2);border-radius:10px;padding:16px;margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="font-size:32px">📈</div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:700">Statistics for Data Analysis</div>
+                <div style="font-size:11px;color:var(--text-muted)">Module 2 · Probability & Distributions</div>
+                <div class="progress-bar" style="margin-top:8px">
+                  <div class="progress-fill" style="width:35%"></div>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:4px">35% complete · 7 of 20 lessons</div>
+              </div>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <a href="course-detail.html?id=statistics" class="btn btn-primary btn-sm" style="flex:1;justify-content:center">
+                <i class="fas fa-play"></i> Continue Lesson
+              </a>
+              <button class="btn btn-ghost btn-sm" onclick="startQuiz('excel','Quick Review Quiz')">
+                <i class="fas fa-question-circle"></i> Quiz
+              </button>
+            </div>
+          </div>
+
+          <!-- Up Next -->
+          <div class="card-subtitle mb-8">Up Next</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="lesson-item" onclick="window.location='course-detail.html?id=statistics'">
+              <div class="lesson-icon video"><i class="fas fa-play"></i></div>
+              <div style="flex:1">
+                <div style="font-size:13px">Normal Distribution & Z-Scores</div>
+                <div style="font-size:11px;color:var(--text-muted)">Video · 18 min</div>
+              </div>
+              <div class="lesson-check"></div>
+            </div>
+            <div class="lesson-item" onclick="window.location='course-detail.html?id=statistics'">
+              <div class="lesson-icon code"><i class="fas fa-code"></i></div>
+              <div style="flex:1">
+                <div style="font-size:13px">Exercise: Probability Calculations</div>
+                <div style="font-size:11px;color:var(--text-muted)">Practice · 25 min</div>
+              </div>
+              <div class="lesson-check"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skill Radar -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Skill Progress Radar</div>
+              <div class="card-subtitle">Current vs target proficiency</div>
+            </div>
+          </div>
+          <div class="chart-wrap" style="height:240px">
+            <canvas id="skillRadar"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Study Activity + Leaderboard -->
+      <div class="grid-2 mb-28" style="gap:20px">
+
+        <!-- Study Heatmap -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Study Activity</div>
+              <div class="card-subtitle">Last 90 days</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-muted)">
+              <div style="width:10px;height:10px;border-radius:2px;background:var(--bg-input)"></div> Less
+              <div style="width:10px;height:10px;border-radius:2px;background:var(--accent-purple)"></div> More
+            </div>
+          </div>
+          <div id="studyHeatmap"></div>
+          <div style="margin-top:16px;display:flex;gap:20px">
+            <div>
+              <div style="font-size:20px;font-weight:800;color:var(--accent-teal)">87h</div>
+              <div class="text-xs text-muted">Total study time</div>
+            </div>
+            <div>
+              <div style="font-size:20px;font-weight:800;color:var(--accent-purple)">12</div>
+              <div class="text-xs text-muted">Current streak</div>
+            </div>
+            <div>
+              <div style="font-size:20px;font-weight:800;color:var(--accent-orange)">4.5h</div>
+              <div class="text-xs text-muted">This week</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Weekly Leaderboard</div>
+              <div class="card-subtitle">Top learners this week</div>
+            </div>
+            <span class="badge badge-yellow"><i class="fas fa-crown"></i> Week 24</span>
+          </div>
+          <div id="leaderboardList"></div>
+          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--text-secondary);text-align:center">
+            You're <strong style="color:var(--accent-teal)">#3 globally</strong> · 1,480 XP from #2
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's Plan + Achievements -->
+      <div class="grid-2 mb-28" style="gap:20px">
+
+        <!-- Today's Study Plan -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Today's Study Plan</div>
+              <div class="card-subtitle">Tuesday, 17 June 2026</div>
+            </div>
+            <button class="btn btn-ghost btn-sm"><i class="fas fa-edit"></i> Edit</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:12px;padding:12px;background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.15);border-radius:10px;border-left:3px solid var(--accent-teal)">
+              <div style="font-size:20px">📈</div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600">Statistics: Probability Distributions</div>
+                <div style="font-size:11px;color:var(--text-muted)">9:00 AM · 30 min · Normal Distribution & Z-Scores</div>
+              </div>
+              <div class="lesson-check done"><i class="fas fa-check" style="font-size:9px"></i></div>
+            </div>
+            <div style="display:flex;gap:12px;padding:12px;background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.15);border-radius:10px;border-left:3px solid var(--accent-purple)">
+              <div style="font-size:20px">🧠</div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600">Practice Quiz: Descriptive Statistics</div>
+                <div style="font-size:11px;color:var(--text-muted)">10:00 AM · 20 min · 10 Questions</div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="startQuiz('excel','Statistics Quiz')">Start</button>
+            </div>
+            <div style="display:flex;gap:12px;padding:12px;background:var(--bg-input);border:1px solid var(--border);border-radius:10px;border-left:3px solid var(--text-muted)">
+              <div style="font-size:20px">📝</div>
+              <div style="flex:1">
+                <div style="font-size:13px;font-weight:600">Review SQL Notes</div>
+                <div style="font-size:11px;color:var(--text-muted)">Evening · 15 min · JOINs & Subqueries</div>
+              </div>
+              <a href="notes.html" class="btn btn-ghost btn-sm">Open</a>
+            </div>
+          </div>
+          <div style="margin-top:14px;padding:12px;background:rgba(255,214,10,0.06);border-radius:8px;font-size:12px;color:var(--text-secondary)">
+            <i class="fas fa-lightbulb" style="color:var(--accent-yellow)"></i>
+            <strong style="color:var(--text-primary)"> Daily Tip:</strong> The best analysts ask "why?" before "what?". Always start with the business question before touching the data.
+          </div>
+        </div>
+
+        <!-- Achievements -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Achievements</div>
+              <div class="card-subtitle">4 of 12 earned</div>
+            </div>
+            <a href="projects.html" class="btn btn-ghost btn-sm">View All</a>
+          </div>
+          <div id="achievementsMini" class="achievement-grid" style="grid-template-columns:repeat(4,1fr)"></div>
+          <div style="margin-top:14px;padding:10px 14px;background:linear-gradient(135deg,rgba(255,214,10,0.08),rgba(255,107,53,0.05));border:1px solid rgba(255,214,10,0.15);border-radius:8px;display:flex;align-items:center;gap:10px">
+            <span style="font-size:20px">🎯</span>
+            <div>
+              <div style="font-size:12px;font-weight:600">Next Achievement: SQL Ninja</div>
+              <div style="font-size:11px;color:var(--text-muted)">Complete the SQL course to unlock</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="card mb-20">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Recent Activity</div>
+            <div class="card-subtitle">Your last 7 days</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          ${[
+            { icon:'✅', text:'Completed: Excel Module 4 — Data Cleaning Techniques', time:'2 hours ago', color:'var(--accent-teal)' },
+            { icon:'⚡', text:'Earned 100 XP for completing Excel quiz (Score: 92%)', time:'2 hours ago', color:'var(--accent-yellow)' },
+            { icon:'📊', text:'Started Statistics Module 2 — Probability Distributions', time:'Yesterday', color:'var(--accent-purple)' },
+            { icon:'🏆', text:'Achievement unlocked: 7-Day Streak!', time:'2 days ago', color:'var(--accent-orange)' },
+            { icon:'📝', text:'Added notes: SQL JOIN Types reference sheet', time:'3 days ago', color:'var(--accent-blue)' },
+          ].map(a => `
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)">
+              <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">${a.icon}</div>
+              <div style="flex:1">
+                <div style="font-size:13px">${a.text}</div>
+                <div style="font-size:11px;color:var(--text-muted)">${a.time}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- Motivational Quote -->
+      <div style="background:linear-gradient(135deg,rgba(108,99,255,0.08),rgba(0,212,170,0.04));border:1px solid rgba(108,99,255,0.15);border-radius:var(--radius);padding:20px;text-align:center;margin-bottom:8px">
+        <div style="font-size:24px;margin-bottom:8px">💡</div>
+        <div style="font-size:16px;font-weight:600;font-style:italic;color:var(--text-primary);max-width:600px;margin:0 auto">"In God we trust; all others must bring data."</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:8px">— W. Edwards Deming</div>
+      </div>
+
+    </div><!-- /page-content -->
+  </main>
+</div>
+
+<!-- Quiz Modal -->
+<div class="modal-overlay" id="quizModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div id="quizTitle" style="font-size:16px;font-weight:700">Knowledge Check</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
+          <span id="quizCounter" class="text-xs text-muted">Question 1 of 10</span>
+          <span id="quizScore" class="text-xs text-muted">Score: 0/0</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div id="quizTimer" class="quiz-timer">0:30</div>
+        <button onclick="closeModal('quizModal')" style="color:var(--text-muted);font-size:20px;background:none;border:none;cursor:pointer">×</button>
+      </div>
+    </div>
+    <div class="modal-body" id="quizBody">
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quizProgress" style="width:0%"></div>
+      </div>
+      <div id="quizQuestion" class="quiz-question">Loading question...</div>
+      <div id="quizOptions" class="quiz-options"></div>
+    </div>
+    <div class="modal-footer" id="quizFooter">
+      <button class="btn btn-ghost" onclick="closeModal('quizModal')">Exit Quiz</button>
+      <button class="btn btn-primary" id="quizNextBtn" onclick="nextQuestion()" disabled>Next Question →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPath Pro — Portfolio</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">📊</div><div class="logo-text">DataPath <span>Pro</span></div></div>
+    <div class="sidebar-user"><div class="user-avatar">AS</div><div class="user-info"><div class="user-name">Alex Student</div><div class="user-level">Analyst • 6,240 XP</div></div></div>
+    <div class="sidebar-xp"><div class="xp-label"><span class="xp-current">6,240 XP</span><span>→ Expert</span></div><div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:25%"></div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="roadmap.html" class="nav-item"><i class="fas fa-map"></i> Learning Roadmap</a>
+      <a href="courses.html" class="nav-item"><i class="fas fa-book-open"></i> Courses</a>
+      <a href="progress.html" class="nav-item"><i class="fas fa-chart-line"></i> My Progress</a>
+      <div class="nav-section-label">Workspace</div>
+      <a href="projects.html" class="nav-item active"><i class="fas fa-folder-open"></i> Portfolio</a>
+      <a href="notes.html" class="nav-item"><i class="fas fa-sticky-note"></i> Notes</a>
+      <a href="interview.html" class="nav-item"><i class="fas fa-briefcase"></i> Interview Prep</a>
+      <a href="assistant.html" class="nav-item"><i class="fas fa-robot"></i> AI Assistant</a>
+    </nav>
+    <div class="sidebar-streak"><div class="streak-icon">🔥</div><div class="streak-info"><div class="streak-count">12</div><div class="streak-label">day streak</div></div></div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title">Project Portfolio <span>Your Data Analyst Showcase</span></div>
+      <div class="topbar-search"><i class="fas fa-search"></i><input type="text" placeholder="Search projects..."></div>
+      <div class="topbar-actions">
+        <button class="btn btn-primary btn-sm" onclick="showToast('Coming soon','Project builder launching next week!','info','🚀')"><i class="fas fa-plus"></i> Add Project</button>
+        <button class="icon-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
+        <div class="topbar-avatar">AS</div>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- Portfolio Stats -->
+      <div class="grid-4 mb-24">
+        <div class="stat-card purple">
+          <div class="stat-icon purple"><i class="fas fa-folder"></i></div>
+          <div class="stat-info"><div class="stat-value">6</div><div class="stat-label">Total Projects</div></div>
+        </div>
+        <div class="stat-card teal">
+          <div class="stat-icon teal"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-info"><div class="stat-value">2</div><div class="stat-label">Completed</div></div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-icon orange"><i class="fas fa-spinner"></i></div>
+          <div class="stat-info"><div class="stat-value">2</div><div class="stat-label">In Progress</div></div>
+        </div>
+        <div class="stat-card pink">
+          <div class="stat-icon pink"><i class="fas fa-tools"></i></div>
+          <div class="stat-info"><div class="stat-value">8</div><div class="stat-label">Tools Used</div></div>
+        </div>
+      </div>
+
+      <!-- Portfolio Value Banner -->
+      <div style="background:linear-gradient(135deg,#1a1240,#0d1f3c);border:1px solid rgba(108,99,255,0.2);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <div style="font-size:40px">💼</div>
+        <div style="flex:1;min-width:200px">
+          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Build Your Data Portfolio</div>
+          <div style="font-size:13px;color:var(--text-secondary)">A strong portfolio of 4–6 data projects is the #1 factor that lands data analyst interviews. Focus on real business problems with measurable impact.</div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="interview.html" class="btn btn-primary btn-sm"><i class="fas fa-briefcase"></i> CV Tips</a>
+          <a href="assistant.html" class="btn btn-ghost btn-sm"><i class="fas fa-robot"></i> Ask DataMentor</a>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="section-header">
+        <div>
+          <div class="section-title">Your Projects</div>
+          <div class="section-subtitle">Showcasing your data analysis skills</div>
+        </div>
+        <div style="display:flex;gap:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:3px">
+          <button class="tab-btn active" style="flex:none;padding:6px 12px;font-size:12px">All</button>
+          <button class="tab-btn" style="flex:none;padding:6px 12px;font-size:12px">Completed</button>
+          <button class="tab-btn" style="flex:none;padding:6px 12px;font-size:12px">In Progress</button>
+        </div>
+      </div>
+
+      <div class="grid-auto mb-28" id="projectGrid"></div>
+
+      <!-- Achievements -->
+      <div class="section-header">
+        <div>
+          <div class="section-title">Achievements & Badges</div>
+          <div class="section-subtitle">4 of 12 unlocked</div>
+        </div>
+      </div>
+      <div id="achievementsGrid" class="achievement-grid mb-28"></div>
+
+      <!-- Skills Matrix -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-th" style="color:var(--accent-purple)"></i> Skills Demonstrated in Projects</div>
+        </div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <thead>
+              <tr style="border-bottom:2px solid var(--border)">
+                <th style="text-align:left;padding:10px 12px;color:var(--text-muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">Skill</th>
+                <th style="padding:10px 12px;color:var(--text-muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">Level</th>
+                <th style="padding:10px 12px;color:var(--text-muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">Projects</th>
+                <th style="padding:10px 12px;color:var(--text-muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:0.5px">Proficiency</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${[
+                { skill:'Excel',      level:'Advanced',     projects:2, pct:85, color:'var(--accent-teal)' },
+                { skill:'Power BI',   level:'Intermediate', projects:1, pct:70, color:'var(--accent-purple)' },
+                { skill:'SQL',        level:'Intermediate', projects:2, pct:65, color:'var(--accent-orange)' },
+                { skill:'Python',     level:'Intermediate', projects:2, pct:55, color:'var(--accent-blue)' },
+                { skill:'Tableau',    level:'Intermediate', projects:1, pct:60, color:'var(--accent-pink)' },
+                { skill:'Statistics', level:'Beginner',     projects:1, pct:40, color:'var(--accent-yellow)' },
+              ].map(s => `
+                <tr style="border-bottom:1px solid var(--border)">
+                  <td style="padding:12px;font-weight:600">${s.skill}</td>
+                  <td style="padding:12px"><span class="badge ${s.level==='Advanced'?'badge-green':s.level==='Intermediate'?'badge-yellow':'badge-gray'}">${s.level}</span></td>
+                  <td style="padding:12px;text-align:center;font-weight:700;color:var(--text-secondary)">${s.projects}</td>
+                  <td style="padding:12px;min-width:160px">
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <div class="progress-bar" style="flex:1"><div style="height:100%;border-radius:99px;background:${s.color};width:${s.pct}%;transition:width 0.5s"></div></div>
+                      <span style="font-size:12px;font-weight:700;color:${s.color};width:36px">${s.pct}%</span>
+                    </div>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+<div class="toast-container"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

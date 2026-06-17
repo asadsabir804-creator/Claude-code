@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataPath Pro — Notes</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div class="logo-icon">📊</div><div class="logo-text">DataPath <span>Pro</span></div></div>
+    <div class="sidebar-user"><div class="user-avatar">AS</div><div class="user-info"><div class="user-name">Alex Student</div><div class="user-level">Analyst • 6,240 XP</div></div></div>
+    <div class="sidebar-xp"><div class="xp-label"><span class="xp-current">6,240 XP</span><span>→ Expert</span></div><div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:25%"></div></div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="roadmap.html" class="nav-item"><i class="fas fa-map"></i> Learning Roadmap</a>
+      <a href="courses.html" class="nav-item"><i class="fas fa-book-open"></i> Courses</a>
+      <a href="progress.html" class="nav-item"><i class="fas fa-chart-line"></i> My Progress</a>
+      <div class="nav-section-label">Workspace</div>
+      <a href="projects.html" class="nav-item"><i class="fas fa-folder-open"></i> Portfolio</a>
+      <a href="notes.html" class="nav-item active"><i class="fas fa-sticky-note"></i> Notes</a>
+      <a href="interview.html" class="nav-item"><i class="fas fa-briefcase"></i> Interview Prep</a>
+      <a href="assistant.html" class="nav-item"><i class="fas fa-robot"></i> AI Assistant</a>
+    </nav>
+    <div class="sidebar-streak"><div class="streak-icon">🔥</div><div class="streak-info"><div class="streak-count">12</div><div class="streak-label">day streak</div></div></div>
+  </aside>
+  <div class="sidebar-overlay"></div>
+
+  <main class="main-content">
+    <header class="topbar">
+      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+      <div class="topbar-title" id="noteTitle">SQL JOINs Reference</div>
+      <div class="topbar-search"><i class="fas fa-search"></i><input type="text" placeholder="Search notes..."></div>
+      <div class="topbar-actions">
+        <button class="btn btn-teal btn-sm" onclick="saveNote()"><i class="fas fa-save"></i> Save</button>
+        <button class="icon-btn theme-toggle" onclick="toggleTheme()"><i class="fas fa-sun"></i></button>
+        <div class="topbar-avatar">AS</div>
+      </div>
+    </header>
+
+    <div style="padding:20px;flex:1;display:flex;flex-direction:column">
+      <div class="notes-layout" style="flex:1">
+
+        <!-- Notes Sidebar -->
+        <div class="notes-sidebar">
+          <div style="padding:12px 16px;border-bottom:1px solid var(--border)">
+            <button class="btn btn-primary btn-sm w-full" style="justify-content:center" onclick="showToast('New Note','Note created!','success','📝')">
+              <i class="fas fa-plus"></i> New Note
+            </button>
+          </div>
+          <div style="padding:8px 8px;border-bottom:1px solid var(--border)">
+            <div style="position:relative">
+              <i class="fas fa-search" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:12px"></i>
+              <input type="text" placeholder="Search notes..." style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:6px;padding:7px 12px 7px 30px;color:var(--text-primary);font-size:12px;outline:none">
+            </div>
+          </div>
+          <div style="padding:4px 8px">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);padding:8px 8px 4px">Excel</div>
+            <div class="notes-tree-item" data-note="excel-formulas" data-default="<h2>Excel Formula Reference</h2><h3>VLOOKUP</h3><p><code>=VLOOKUP(lookup_value, table_array, col_index_num, FALSE)</code></p><p>Used to find data in a table by searching for a matching value in the first column.</p><h3>INDEX-MATCH</h3><p><code>=INDEX(return_range, MATCH(lookup_value, lookup_range, 0))</code></p><p>More powerful than VLOOKUP — can look left, faster on large datasets.</p><h3>SUMIF</h3><p><code>=SUMIF(range, criteria, sum_range)</code></p><p>Sums values that meet a specific condition.</p>">
+              <i class="fas fa-file-alt" style="font-size:12px;color:var(--accent-purple)"></i> Excel Formulas
+            </div>
+            <div class="notes-tree-item" data-note="pivot-tables" data-default="<h2>Pivot Table Notes</h2><p>Pivot tables are Excel's most powerful feature for summarizing large datasets.</p><h3>Steps to Create</h3><ol><li>Select your data range</li><li>Insert → PivotTable</li><li>Drag fields to Rows, Columns, Values areas</li><li>Add Slicers for interactivity</li></ol><h3>Key Tips</h3><ul><li>Always format source data as a Table (Ctrl+T)</li><li>Use 'Value Field Settings' to change aggregation</li><li>Refresh with right-click → Refresh</li></ul>">
+              <i class="fas fa-file-alt" style="font-size:12px;color:var(--accent-purple)"></i> Pivot Tables
+            </div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);padding:8px 8px 4px">SQL</div>
+            <div class="notes-tree-item active" data-note="sql-joins" data-default="<h2>SQL JOINs Reference</h2><p>JOINs combine rows from two or more tables based on a related column.</p><h3>INNER JOIN</h3><pre>SELECT c.name, o.order_date\nFROM customers c\nINNER JOIN orders o ON c.id = o.customer_id;</pre><p>Returns only matching rows from both tables.</p><h3>LEFT JOIN</h3><pre>SELECT c.name, o.order_id\nFROM customers c\nLEFT JOIN orders o ON c.id = o.customer_id;</pre><p>Returns ALL customers even if they have no orders (NULLs for unmatched).</p><h3>When to Use Which</h3><ul><li>INNER JOIN → When you only need matched data</li><li>LEFT JOIN → When you need all records from the main table</li><li>FULL OUTER JOIN → When you need everything from both tables</li></ul>">
+              <i class="fas fa-file-alt" style="font-size:12px;color:var(--accent-teal)"></i> SQL JOINs
+            </div>
+            <div class="notes-tree-item" data-note="sql-window" data-default="<h2>Window Functions</h2><p>Window functions perform calculations across a set of rows related to the current row.</p><h3>ROW_NUMBER()</h3><pre>SELECT name, sales,\n  ROW_NUMBER() OVER (PARTITION BY region ORDER BY sales DESC) as rank\nFROM sales_data;</pre><h3>Running Total</h3><pre>SELECT date, amount,\n  SUM(amount) OVER (ORDER BY date) as running_total\nFROM transactions;</pre>">
+              <i class="fas fa-file-alt" style="font-size:12px;color:var(--accent-teal)"></i> Window Functions
+            </div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);padding:8px 8px 4px">Python</div>
+            <div class="notes-tree-item" data-note="pandas-cheat" data-default="<h2>Pandas Cheat Sheet</h2><h3>Load Data</h3><pre>df = pd.read_csv('file.csv')</pre><h3>Explore</h3><pre>df.head()      # First 5 rows\ndf.shape       # (rows, cols)\ndf.info()      # Types + nulls\ndf.describe()  # Stats</pre><h3>Filter</h3><pre>df[df['col'] > 100]         # Rows where col > 100\ndf[df['name']=='Alice']    # Exact match\ndf.loc[0:5, 'Revenue']     # Label slicing</pre><h3>Groupby</h3><pre>df.groupby('Region')['Sales'].sum()\ndf.groupby(['Region','Product']).agg({'Sales':'sum','Units':'mean'})</pre>">
+              <i class="fas fa-file-alt" style="font-size:12px;color:var(--accent-orange)"></i> Pandas Cheat Sheet
+            </div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);padding:8px 8px 4px">Statistics</div>
+            <div class="notes-tree-item" data-note="stats-basics" data-default="<h2>Statistics Fundamentals</h2><h3>Measures of Center</h3><ul><li><strong>Mean</strong>: Arithmetic average. Sensitive to outliers. Best for normal distributions.</li><li><strong>Median</strong>: Middle value. Robust to outliers. Best for skewed distributions.</li><li><strong>Mode</strong>: Most frequent. Best for categorical data.</li></ul><h3>Hypothesis Testing</h3><p><strong>Null Hypothesis (H₀)</strong>: No effect or difference exists.</p><p><strong>Alternative Hypothesis (H₁)</strong>: An effect or difference exists.</p><p><strong>p-value &lt; 0.05</strong>: Reject the null hypothesis (statistically significant).</p><h3>A/B Test Example</h3><p>Control: 12% conversion. Treatment: 14.8% conversion. p = 0.023 → significant!</p>">
+              <i class="fas fa-file-alt" style="font-size:12px;color:var(--accent-pink)"></i> Stats Basics
+            </div>
+          </div>
+        </div>
+
+        <!-- Editor -->
+        <div class="notes-editor">
+          <div class="notes-toolbar">
+            <button class="toolbar-btn" data-cmd="bold" title="Bold"><i class="fas fa-bold"></i></button>
+            <button class="toolbar-btn" data-cmd="italic" title="Italic"><i class="fas fa-italic"></i></button>
+            <button class="toolbar-btn" data-cmd="underline" title="Underline"><i class="fas fa-underline"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-btn" data-cmd="insertUnorderedList" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+            <button class="toolbar-btn" data-cmd="insertOrderedList" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-btn" data-cmd="formatBlock" data-val="h2" title="Heading"><i class="fas fa-heading"></i></button>
+            <button class="toolbar-btn" data-cmd="formatBlock" data-val="pre" title="Code Block"><i class="fas fa-code"></i></button>
+            <div class="toolbar-divider"></div>
+            <button class="toolbar-btn" onclick="document.execCommand('removeFormat')" title="Clear Formatting"><i class="fas fa-remove-format"></i></button>
+            <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+              <span style="font-size:11px;color:var(--text-muted)" id="saveStatus">Auto-saved</span>
+              <div style="display:flex;gap:4px">
+                <span class="badge badge-teal" style="cursor:pointer">SQL</span>
+                <span class="badge badge-purple" style="cursor:pointer">JOINs</span>
+                <span class="badge badge-blue" style="cursor:pointer">Reference</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Editable Editor -->
+          <div class="notes-content" id="notesEditor" contenteditable="true" spellcheck="false">
+            <h2>SQL JOINs Reference</h2>
+            <p>JOINs combine rows from two or more tables based on a related column between them.</p>
+            <h3>INNER JOIN</h3>
+            <pre>SELECT c.customer_name, o.order_date, o.total_amount
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.order_date >= '2024-01-01';</pre>
+            <p>Returns only matching rows from both tables. If a customer has no orders, they won't appear.</p>
+            <h3>LEFT JOIN</h3>
+            <pre>SELECT c.customer_name, COUNT(o.order_id) as order_count
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_name;</pre>
+            <p>Returns ALL customers even those with no orders (their count will be 0 or NULL).</p>
+            <h3>FULL OUTER JOIN</h3>
+            <p>Returns all rows from both tables. Unmatched rows show NULL for missing side.</p>
+            <h3>When to Use Which JOIN</h3>
+            <ul>
+              <li><strong>INNER JOIN</strong> — Only need matched data (e.g., orders with known customers)</li>
+              <li><strong>LEFT JOIN</strong> — Keep all records from main table (e.g., all customers, even inactive)</li>
+              <li><strong>RIGHT JOIN</strong> — Rarely used; prefer LEFT JOIN by swapping table order</li>
+              <li><strong>FULL OUTER JOIN</strong> — Need everything from both tables (e.g., reconciliation)</li>
+            </ul>
+            <h3>Business Example</h3>
+            <p>To find customers who have NEVER placed an order (perfect for churn analysis):</p>
+            <pre>SELECT c.customer_name
+FROM customers c
+LEFT JOIN orders o ON c.customer_id = o.customer_id
+WHERE o.order_id IS NULL;</pre>
+          </div>
+
+          <!-- Quick Reference Panel -->
+          <div style="border-top:1px solid var(--border);padding:12px 16px;background:var(--bg-secondary)">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);margin-bottom:8px">📌 Pinned Quick Reference — SQL JOIN Types</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              ${[
+                { join:'INNER JOIN', use:'Matched rows only', color:'var(--accent-blue)' },
+                { join:'LEFT JOIN',  use:'All left + matched right', color:'var(--accent-teal)' },
+                { join:'RIGHT JOIN', use:'Matched left + all right', color:'var(--accent-purple)' },
+                { join:'FULL OUTER', use:'All rows both tables', color:'var(--accent-orange)' },
+              ].map(j => `
+                <div style="padding:6px 10px;background:var(--bg-card);border:1px solid var(--border);border-left:3px solid ${j.color};border-radius:6px;font-size:11px">
+                  <div style="font-weight:700;font-family:'JetBrains Mono',monospace;color:${j.color}">${j.join}</div>
+                  <div style="color:var(--text-muted)">${j.use}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+<div class="toast-container"></div>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function saveNote() {
+    const editor = document.getElementById('notesEditor');
+    const status = document.getElementById('saveStatus');
+    const key = document.querySelector('.notes-tree-item.active')?.dataset.note || 'default';
+    if (editor) {
+      localStorage.setItem(`dp_note_${key}`, editor.innerHTML);
+      status.textContent = 'Saved ✓';
+      status.style.color = 'var(--accent-teal)';
+      setTimeout(() => { status.textContent = 'Auto-saved'; status.style.color = ''; }, 2000);
+    }
+    addXP(5, 'Note saved');
+  }
+
+  // Add code block styling
+  const style = document.createElement('style');
+  style.textContent = `
+    .notes-content h2 { font-size:22px;font-weight:800;margin:0 0 12px;color:var(--text-primary); }
+    .notes-content h3 { font-size:15px;font-weight:700;margin:20px 0 8px;color:var(--accent-purple); }
+    .notes-content pre { background:var(--bg-input);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;margin:10px 0;overflow-x:auto;color:var(--accent-teal); }
+    .notes-content p { margin:8px 0;color:var(--text-secondary); }
+    .notes-content ul, .notes-content ol { padding-left:20px;color:var(--text-secondary); }
+    .notes-content li { margin:4px 0;font-size:13px; }
+    .notes-content strong { color:var(--text-primary); }
+    .notes-content code { font-family:'JetBrains Mono',monospace;background:var(--bg-input);padding:1px 6px;border-radius:4px;font-size:12px; }
+  `;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
